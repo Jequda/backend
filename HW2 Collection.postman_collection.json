@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "7a8234f5-2e89-467d-9807-69d0db186305",
+		"name": "HW2 Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36204768"
+	},
+	"item": [
+		{
+			"name": "Приветствие пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"text/plain\")\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Hello, John\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}?hello={{name}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"query": [
+						{
+							"key": "hello",
+							"value": "{{name}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Приветствие пользователя (пустая строка)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400)\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"text/plain\")\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Enter a name\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}?hello=",
+					"host": [
+						"{{api_url}}"
+					],
+					"query": [
+						{
+							"key": "hello",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Список пользователей",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].id).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/users",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Без параметров",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"text/plain\")\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Hello world\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}",
+					"host": [
+						"{{api_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Некорректные параметры",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {\r",
+							"    pm.response.to.have.status(500)\r",
+							"});\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"text/plain\")\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}?date",
+					"host": [
+						"{{api_url}}"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
